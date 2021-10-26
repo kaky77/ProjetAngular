@@ -1,6 +1,5 @@
 import { Component,Input,OnInit } from '@angular/core';
-import { AppareilServiceComponent } from './appareil-service/appareil-service.component';
-import { AppareilComponent } from './appareil/appareil.component';
+import { AppareilsService } from './services/appareils.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,7 +30,7 @@ export class AppComponent {
   ];
 
   
-  constructor(private appareilService: AppareilServiceComponent) {
+  constructor(private appareilService: AppareilsService) {
     setTimeout(
       () => {
         this.isAuth = true;
@@ -42,25 +41,8 @@ export class AppComponent {
     this.appareilName = this.appareilService.appareilName;
 }
   
+  
 
-  onAllumer() {
-    this.appareilService.switchOnAll();
-  }
-
-  onEteindre(){
-    if(confirm('Etes-vous sùr de vouloir tout éteindre :) ? '))
-    {
-      this.appareilService.switchOffAll();
-      return 0;
-    } else{
-      return null;
-    }
-    
-  }
- 
-  
-  
-  
 }
 
 

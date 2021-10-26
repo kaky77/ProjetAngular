@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppareilServiceComponent } from '../appareil-service/appareil-service.component';
+import { AppareilsService } from '../services/appareils.service';
 
 @Component({
   selector: 'app-appareil',
@@ -14,7 +14,7 @@ export class AppareilComponent implements OnInit {
   @Input() index:number=0;
 
 
-  constructor(private appareilService: AppareilServiceComponent) { }
+  constructor(private appareilService: AppareilsService) { }
 
   ngOnInit(): void {
   }
