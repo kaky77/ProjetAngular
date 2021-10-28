@@ -3,15 +3,17 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>Mes Appareils</h2>
-        <p>Mis à jour : {{ lastUpdate | date:'short'}}</p>
-        <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' }}</p>
-        <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' | uppercase }}</p>
+       
+        <!-- <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' }}</p>
+          <p>Mis à jour : {{ lastUpdate | date:'short'}}</p>
+        <p>Mis à jour : {{ lastUpdate | date: 'yMMMMEEEEd' | uppercase }}</p>-->
         <ul class="list-group">
           <app-appareil *ngFor="let appareil of appareilName;let i= index"
                         [appareilName]="appareil.name"
                         [appareilStatus]="appareil.status"
                         [index]="i"
-                        ></app-appareil>
+                        [id]="appareil.id"
+                         ></app-appareil>
         </ul>
         <button class="btn btn-success"
         [disabled]="!isAuth"

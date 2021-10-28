@@ -4,22 +4,27 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="auth">Authentification</a></li>
           <li routerLinkActive="active"><a routerLink="Appareils">Appareils</a></li>
+          <li routerLinkActive="active"><a routerLink="edit">Nouvel appareil</a></li>
       </ul>
+      <div class="navbar-right">
+        <p>Vous êtes connecté depuis {{ secondes }} secondes !</p>
+    </div>
     </div>
   </div>
 </nav>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
+      Mis à jour : {{ lastUpdate | date:'short'}}
       <router-outlet></router-outlet>
     </div>
   </div>
 </div>
 
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-xs-12">
       <app-appareil-view></app-appareil-view>
     </div>
   </div>
-</div>
+</div>-->

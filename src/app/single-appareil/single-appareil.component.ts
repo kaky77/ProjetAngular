@@ -10,16 +10,16 @@ import { AppareilsService } from '../services/appareils.service';
 export class SingleAppareilComponent implements OnInit {
 
 
-  name: string = 'Appareil';
-  status: string = 'Statut';
+  name:(string | undefined)='Appareil';
+  status:(string|undefined)='Status';
 
   constructor(private appareilService:AppareilsService,private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
-    this.name = this.appareilService.getAppareilById(+id)?.name;
-    this.status =this.appareilService.getAppareilById(+id).status;
-  
+  ngOnInit() {
+    const id:number = this.route.snapshot.params['id'];
+    this.name= this.appareilService.getAppareilById(+ id)!.name;
+    this.status =this.appareilService.getAppareilById(+ id)!.status;
   }
 
 }
+
