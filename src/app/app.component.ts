@@ -14,6 +14,7 @@ export class AppComponent implements OnDestroy, OnInit {
   @Input() appareilStatus: string = '';
   secondes: number=0;
   counterSubscription: Subscription | undefined;
+ 
 
   //un array avec trois objets. chaque objet ayant une propriété  name  et une
   //propriété  status

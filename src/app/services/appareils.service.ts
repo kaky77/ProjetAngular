@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class AppareilsService {
     }
   ];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   emitAppareilSubject() {
     this.appareilsSubject.next(this.appareilName.slice());
@@ -65,6 +66,45 @@ export class AppareilsService {
       }
     );
     return appareil;
+}
+
+addAppareil(name:string,status:string){
+  const appareilObject={
+    id:0,
+    name:'',
+    status:''
+  };
+  appareilObject.name=name;
+  appareilObject.status=status;
+  appareilObject.id=this.appareilName[(this.appareilName.length-1)].id+1;
+  this.appareilName.push(appareilObject);
+  this.emitAppareilSubject();
+}
+saveAppareilsToServer() {
+  this.httpClient
+    .put('https://projetangular-3c365-default-rtdb.firebaseio.com/appareils.json', this.appareilName)
+    .subscribe(
+      () => {
+        console.log('Enregistrement terminé !');
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+}
+
+getAppareilsFromServer() {
+  this.httpClient
+    .get<any[]>('https://httpclient-demo.firebaseio.com/appareils.json')
+    .subscribe(
+      (response) => {
+        this.appareilName = response;
+        this.emitAppareilSubject();
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
 }
 
 }
